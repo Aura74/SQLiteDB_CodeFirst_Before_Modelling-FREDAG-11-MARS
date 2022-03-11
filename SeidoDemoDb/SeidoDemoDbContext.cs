@@ -8,27 +8,26 @@ namespace SeidoDemoDb
 {
     public class SeidoDemoDbContext:DbContext
     {
-        #region Uncomment to create the Data model
-        //public DbSet<Customer> Customers { get; set; }
-        //public DbSet<Order> Orders { get; set; }
-        #endregion
+
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Order> Orders { get; set; }
+
 
         public SeidoDemoDbContext() { }
         public SeidoDemoDbContext(DbContextOptions options) : base(options)
         { }
 
-        #region Uncomment to create the Data model
-        /*
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                var connectionString = DBConnection.ConfigurationRoot.GetConnectionString("SQLite_seidodemo");
+                var connectionString = DBConnection.ConfigurationRoot.GetConnectionString("SQLite_pearlv2");
                 optionsBuilder.UseSqlite(connectionString);
             }
             base.OnConfiguring(optionsBuilder);
         }
-        */
-        #endregion
+
     }
 }

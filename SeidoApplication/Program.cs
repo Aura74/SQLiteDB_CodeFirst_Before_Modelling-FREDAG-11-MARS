@@ -19,9 +19,42 @@ namespace SeidoApplication
             BuildOptions();
 
             #region Uncomment to seed and query the Database
-            //SeedDataBase();
-            //QueryDatabaseAsync().Wait();
+            SeedDataBase();
+            QueryDatabaseAsync().Wait();
             #endregion
+
+            //int max = MyList.Max();
+
+            //double?[] doubles = { null, 1.5E+104, 9E+103, -2E+103 };
+
+            //double? max = doubles.Max();
+
+            //Console.WriteLine("The largest number is {0}.", max);
+
+            /*
+             This code produces the following output:
+
+             The largest number is 1.5E+104.
+            */
+
+
+            using (var db = new SeidoDemoDbContext(_optionsBuilder.Options))
+            
+
+                foreach (var m in db.Customers)
+            {
+                Console.WriteLine($"KR: {m.totalPrice} ID:({m.Comment})");
+            }
+
+
+
+
+            //var values = new List<int> { 2, 9, 1, 3 };
+            //Console.WriteLine(values.Max()); // Output: 9
+
+            //var otherValues = new List<int?> { 2, 9, 1, 3, null };
+            //Console.WriteLine(otherValues.Max()); // Output: 9
+
         }
 
         private static void BuildOptions()
@@ -31,7 +64,7 @@ namespace SeidoApplication
             #region Ensuring appsettings.json is in the right location
             Console.WriteLine($"DbConnections Directory: {DBConnection.DbConnectionsDirectory}");
 
-            var connectionString = DBConnection.ConfigurationRoot.GetConnectionString("SQLite_seidodemo");
+            var connectionString = DBConnection.ConfigurationRoot.GetConnectionString("SQLite_pearlv2");
             if (!string.IsNullOrEmpty(connectionString))
                 Console.WriteLine($"Connection string to Database: {connectionString}");
             else
@@ -45,24 +78,29 @@ namespace SeidoApplication
         }
 
         #region Uncomment to seed and query the Database
-        /*
+
         private static void SeedDataBase()
         {
             using (var db = new SeidoDemoDbContext(_optionsBuilder.Options))
             {
+                // eller skapa halsband
                 //Create some customers
-                var CustomerList = new List<Customer>();
-                for (int i = 0; i < 10; i++)
+                var CustomerList = new List<Customer>(); // en lista av kunder/halsband
+                for (int i = 0; i < 5; i++)
                 {
                     CustomerList.Add(new Customer());
                 }
                 //Create some orders randomly linked to customers
                 var rnd = new Random();
+
+                int prnd = rnd.Next(1, 5);
+
                 var OrderList = new List<Order>();
-                for (int i = 0; i < 20; i++)
+                for (int i = 0; i < prnd; i++)
                 {
                     OrderList.Add(new Order(CustomerList[rnd.Next(0, CustomerList.Count)].CustomerID));
                 }
+
 
                 //Add it to the Database
                 CustomerList.ForEach(cust => db.Customers.Add(cust));
@@ -82,7 +120,7 @@ namespace SeidoApplication
                 Console.WriteLine($"Nr of Orders: {orders}");
             }
         }
-        */
+
         #endregion
     }
 }

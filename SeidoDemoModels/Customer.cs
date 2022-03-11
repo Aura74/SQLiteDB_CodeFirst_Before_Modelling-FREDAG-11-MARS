@@ -9,28 +9,51 @@ namespace SeidoDemoModels
      
     public class Customer
     {
-        #region Uncomment to create the Data model
-        /*
+        //List<Order> Orders = new List<Order>();
+
         [Key]
         [Column("CustomerID")]
         public Guid CustomerID { get; set; }
+        //public int CustomerID { get; set; }
 
         [Column(TypeName = "nvarchar (200)")]
         public string Comment { get; set; }
+        public int totalPrice { get; set; }
 
         public virtual List<Order> Orders { get; set; } = new List<Order>();
-        */
-        #endregion
 
-        #region Uncomment to seed and query the Database
-        /*
-        public Customer ()
+
+        //public int totalPrice
+        //{
+        //    get
+        //    {
+        //        var totalprice = 0;
+        //        foreach (var x in Orders)
+        //        {
+        //            totalprice += x.Price;
+        //        }
+        //        return totalprice;
+        //    }
+        //}
+
+        // Häs skapas id, Comments 
+        public Customer() // halsband
         {
+         
             CustomerID = Guid.NewGuid();
             Comment = $"{CustomerID} specific comment";
+
+            var totalpriceTillfällig = 0;
+            foreach (var x in Orders)
+            {
+                totalpriceTillfällig += x.Price;
+            }
+            //return totalprice;
+
+            this.totalPrice = totalpriceTillfällig;
+
         }
-        */
-        #endregion
+
     }
-    
+
 }
