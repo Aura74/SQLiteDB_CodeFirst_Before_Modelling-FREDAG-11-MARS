@@ -8,16 +8,12 @@ namespace SeidoDemoDb
 {
     public class SeidoDemoDbContext:DbContext
     {
-
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
-
 
         public SeidoDemoDbContext() { }
         public SeidoDemoDbContext(DbContextOptions options) : base(options)
         { }
-
-
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -28,6 +24,5 @@ namespace SeidoDemoDb
             }
             base.OnConfiguring(optionsBuilder);
         }
-
     }
 }

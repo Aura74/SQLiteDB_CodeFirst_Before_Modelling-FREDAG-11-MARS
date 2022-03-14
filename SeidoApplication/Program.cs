@@ -18,10 +18,8 @@ namespace SeidoApplication
         {
             BuildOptions();
 
-            #region Uncomment to seed and query the Database
             SeedDataBase();
             QueryDatabaseAsync().Wait();
-            #endregion
 
             //int max = MyList.Max();
 
@@ -36,25 +34,18 @@ namespace SeidoApplication
 
              The largest number is 1.5E+104.
             */
-
-
-            using (var db = new SeidoDemoDbContext(_optionsBuilder.Options))
             
-
+            using (var db = new SeidoDemoDbContext(_optionsBuilder.Options))
                 foreach (var m in db.Customers)
             {
                 Console.WriteLine($"KR: {m.totalPrice} ID:({m.Comment})");
             }
-
-
-
-
+            
             //var values = new List<int> { 2, 9, 1, 3 };
             //Console.WriteLine(values.Max()); // Output: 9
 
             //var otherValues = new List<int?> { 2, 9, 1, 3, null };
             //Console.WriteLine(otherValues.Max()); // Output: 9
-
         }
 
         private static void BuildOptions()
@@ -76,8 +67,6 @@ namespace SeidoApplication
 
             _optionsBuilder.UseSqlite(connectionString);
         }
-
-        #region Uncomment to seed and query the Database
 
         private static void SeedDataBase()
         {
@@ -101,7 +90,6 @@ namespace SeidoApplication
                     OrderList.Add(new Order(CustomerList[rnd.Next(0, CustomerList.Count)].CustomerID));
                 }
 
-
                 //Add it to the Database
                 CustomerList.ForEach(cust => db.Customers.Add(cust));
                 OrderList.ForEach(order => db.Orders.Add(order));
@@ -120,7 +108,5 @@ namespace SeidoApplication
                 Console.WriteLine($"Nr of Orders: {orders}");
             }
         }
-
-        #endregion
     }
 }

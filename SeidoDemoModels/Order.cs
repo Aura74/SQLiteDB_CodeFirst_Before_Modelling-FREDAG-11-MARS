@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SeidoDemoModels
 {
-    
     public class Order // Pärla
     {
         public const int basePrice = 50;
@@ -46,8 +45,7 @@ namespace SeidoDemoModels
         //    }
         //    set { Price = value; }
         //}
-
-
+        
         public Order(Guid CustomerID)
         {
             var rnd = new Random();
@@ -78,12 +76,8 @@ namespace SeidoDemoModels
                 price = basePrice * Diameter;
             }
             this.Price = price;
-
-        }
+            }
         //set { Price = value; }
     }
-
-
 }
-
 //}

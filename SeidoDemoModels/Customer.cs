@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SeidoDemoModels
 {
-     
     public class Customer
     {
         //List<Order> Orders = new List<Order>();
@@ -21,7 +20,6 @@ namespace SeidoDemoModels
         public int totalPrice { get; set; }
 
         public virtual List<Order> Orders { get; set; } = new List<Order>();
-
 
         //public int totalPrice
         //{
@@ -39,7 +37,6 @@ namespace SeidoDemoModels
         // Häs skapas id, Comments 
         public Customer() // halsband
         {
-         
             CustomerID = Guid.NewGuid();
             Comment = $"{CustomerID} specific comment";
 
@@ -51,9 +48,6 @@ namespace SeidoDemoModels
             //return totalprice;
 
             this.totalPrice = totalpriceTillfällig;
-
         }
-
     }
-
 }
